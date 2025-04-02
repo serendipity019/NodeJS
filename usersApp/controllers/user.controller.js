@@ -81,3 +81,31 @@ exports.update = async(req, res) => {
         res.status(400).json({status: false, data: err});
     }
 }
+
+exports.deleteByUsername = async(req, res) => { // http://localhost:3000/api/users/testUser
+    const username = req.params.username;
+    console.log('Delete user with username', username);
+
+    try {
+        const result = await User.findByIdAndDelete({username: username});
+        res.status(200).json({status: true, data: result});
+    } catch (err) {
+        console.log('Problem in deleteing user', err);
+        res.status(400).json({status: false, data: err});
+    }
+}
+
+exports.deleteByEmail = async(req, res) => { // http://localhost:3000/api/users/testUser/email/lakis@aueb.gr
+    const username = req.params.username;
+    const email = req.params.email;
+    console.log('Delete user by email', email);
+
+    try {
+        const result = await User.findByIdAndDelete({email: email});
+        res.status(200).json({status: true, data: result});
+    } catch (err) {
+        console.log('Problem in deleteing user', err);
+        res.status(400).json({status: false, data: err});
+    }
+
+}
