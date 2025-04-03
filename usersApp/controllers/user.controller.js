@@ -1,5 +1,6 @@
 const User = require('../models/user.model');
 const userService = require('../services/user.services');
+const bcrypt = require('bcrypt');
 
 exports.findAll = async(req, res) => {
     console.log('Find all users from collection users');
@@ -37,10 +38,13 @@ exports.create = async(req, res) => {
     console.log('Create User');
 
     let data = req.body;
+    const saltOrRounds = 10; //cycles of cryptographie 
+    const hashedPassword = await bcrypt.hash(data.password, saltOrRounds)
+
 
     const newUser = new User({
         username: data.username,
-        password: data.password,
+        password: hashedPassword,
         name: data.name,
         surname: data.surname,
         email: data.email,
@@ -109,3 +113,5 @@ exports.deleteByEmail = async(req, res) => { // http://localhost:3000/api/users/
     }
 
 }
+
+//I stoped the video in 1:41'
