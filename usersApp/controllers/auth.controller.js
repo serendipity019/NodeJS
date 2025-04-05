@@ -2,13 +2,13 @@ const User = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const authService = require('../services/auth.service');
 
-exports.login() = async(req, res) => {
+exports.login = async(req, res) => {
     console.log('Login user', req.body);
     
     const username = req.body.username;
     const password = req.body.password;
     try {
-        const result = await User.findOne({username: username});
+        const result = await User.findOne({username: username}, {username:1, email:1, password:1, roles: 1});
         const isMatch = await bcrypt.compare(password, result.password);
 
         //if (result && result.username === username && result.password === password)

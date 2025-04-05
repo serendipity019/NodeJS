@@ -16,4 +16,16 @@ function generateAccessToken(users) {
     return jwt.sign(payload, secret, options);
 }
 
-module.exports = {generateAccessToken}; 
+function verifyAccessToken(token) {
+    const secret = process.env.TOKEN_SECRET;
+    try {
+        const payload = jwt.verify(token, secret);
+        console.log("Verify Token", payload);
+        return {verified:true, data: payload}; 
+    } catch (err) {
+        console.log("You aren't verified", err);
+        return {verified: false, data: err.message};
+    }
+} 
+
+module.exports = {generateAccessToken, verifyAccessToken}; 
