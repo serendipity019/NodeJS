@@ -31,7 +31,7 @@ exports.options = {
     "servers": [
         {
          url:"http://localhost:3000",
-         description: "Testing server"
+         description: "Local server"
         },
         {
          url:"http://www.backend.aueb.gr",
@@ -137,7 +137,66 @@ exports.options = {
                     }
                     }
                 }
-            }            
+            },
+            "patch": {
+                "tags": ["Users"],
+                "description": "Update user",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "required" : true,
+                        "description": "Username of user that can update",
+                        "type": "string"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data of user to update",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {"type": "string"},                                
+                                    "name": {"type": "string"},
+                                    "surname": {"type": "string"},
+                                    "email": {"type": "string"},
+                                    "address": {"type": "object",
+                                        "properties": {
+                                            "area": {"type": "string"},
+                                            "road": {"type": "string"},
+                                        }
+                                }
+                            },
+                           "required": ["username", "password", "name", "surname", "email"]
+                        }
+                    }
+                }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Update user"
+                    }
+                }        
+            },
+            "delete": {
+                "tags": ["Users"],
+                "description": "Delete user from DB",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "User to delete",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Delete a User"
+                    }
+                }
+            }
         },
         "/api/auth/login": {
             "post": {
@@ -161,6 +220,28 @@ exports.options = {
                 "responses": {
                     "200": {
                         "description": "Token returned"
+                    }
+                }
+            }
+        },
+        "/api/user-product/{username}": {
+            "get": {
+                "tags": ["Users and Products"],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "required": true,
+                        "description": "Find user and products",
+                        "type": "string"
+                    }
+                ],
+                "responses" : {
+                    "200": {
+                        "description": "User and Products",
+                        "schema": {
+                            "$ref": "#/components/schemas/User"
+                        }
                     }
                 }
             }

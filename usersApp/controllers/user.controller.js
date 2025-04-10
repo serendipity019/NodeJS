@@ -2,6 +2,8 @@ const User = require('../models/user.model');
 const userService = require('../services/user.services');
 const bcrypt = require('bcrypt');
 
+const logger = require('../logger/logger');
+
 exports.findAll = async(req, res) => {
     console.log('Find all users from collection users');
 
@@ -10,8 +12,10 @@ exports.findAll = async(req, res) => {
         const result = await userService.findAll();
 
         res.status(200).json({status: true, data: result});
+        logger.info("INFO, Success while reading all users");
     } catch (err) {
         console.log('Problem in reading users', err);
+        logger.error("Error, Problem while reading all users", err);
         res.json({status: false, data: err});
     }
 }
@@ -113,5 +117,3 @@ exports.deleteByEmail = async(req, res) => { // http://localhost:3000/api/users/
     }
 
 }
-
-//I stoped the video in 1:41'
