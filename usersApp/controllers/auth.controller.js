@@ -24,7 +24,7 @@ exports.login = async(req, res) => {
     }
 }
 
-exports.googleLogin = async(rec, res) => {
+exports.googleLogin = async(req, res) => {
     const code = req.query.code; // because give query parameters we use query 
 
     if (!code) {
