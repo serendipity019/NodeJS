@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1744549515788" clover="3.2.0">
-  <project timestamp="1744549515789" name="All files">
+<coverage generated="1744791395022" clover="3.2.0">
+  <project timestamp="1744791395023" name="All files">
     <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1" elements="10" coveredelements="4" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
     <file name="index.js" path="/home/kleidimos/coding-factory/JavaScript/CF7-Node/jestApp/index.js">
       <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="1"/>
       <line num="1" count="1" type="stmt"/>
-      <line num="3" count="1" type="stmt"/>
+      <line num="3" count="2" type="stmt"/>
       <line num="7" count="0" type="stmt"/>
       <line num="11" count="0" type="stmt"/>
       <line num="15" count="0" type="stmt"/>
