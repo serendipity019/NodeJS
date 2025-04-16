@@ -29,6 +29,9 @@
 //     transports: [new transports.Console()]
 // });
 
+// For jest tests
+//require('dotenv').config(); // take off from here and put the setupFiles in pacakage.json
+
 //Third example use MongoDB and dailyrotateFile 
 require('winston-daily-rotate-file');
 require('winston-mongodb');
