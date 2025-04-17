@@ -1,39 +1,5 @@
 
 
-//First example
-// const winstom = require('winston');
-// const logger = winston.createLogger(
-//     {
-//         format: winston.format.json(),
-//         transports: [
-//             new winston.transports.Console()
-//         ]
-//     }
-// )
-
-//second example custom format with timestamp
-// const {format, createLogger, transports} = require('winston');
-// const {combine, timestamp, label, printf} = format; 
-// const CATEGORY = 'Product app loggs'
-// const customFormat = printf(({message, level, label, timestamp}) => {
-//     return `${timestamp} [${label}: ${level}, ${message}]`; 
-// } );
-
-// const logger = createLogger({
-//     // level: "warn",
-//     format: combine(
-//         label({label:CATEGORY}),
-//         timestamp(),
-//         customFormat
-//     ),
-//     transports: [new transports.Console()]
-// });
-
-// For jest tests
-//require('dotenv').config(); // take off from here and put the setupFiles in pacakage.json
-
-//Third example use MongoDB and dailyrotateFile 
-require('winston-daily-rotate-file');
 require('winston-mongodb');
 
 const {format, createLogger, transports} = require('winston');

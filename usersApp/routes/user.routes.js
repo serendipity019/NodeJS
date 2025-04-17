@@ -5,8 +5,8 @@ const userController = require('../controllers/user.controller');
 const verifyToken = require('../middlewares/auth.middleware').verifyToken;
 const verifyRoles = require('../middlewares/auth.middleware').verifyRoles;
 
-router.get('/',  userController.findAll);
-router.get('/:username', userController.findOne); // :username is for the path parameter
+router.get('/',verifyToken, userController.findAll);
+router.get('/:username', verifyToken, userController.findOne); // :username is for the path parameter
 //router.post('/', userController.create); //this is if we haven't verify token 
 router.post('/', verifyToken, verifyRoles("ADMIN"), userController.create); 
 router.patch('/:username',verifyToken, verifyRoles("ADMIN"), userController.update);
