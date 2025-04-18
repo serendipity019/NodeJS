@@ -43,11 +43,10 @@ exports.create = async(req, res) => {
 
     let data = req.body;
     const saltOrRounds = 10; //cycles of cryptographie 
-
+    let hashedPassword = "";
+    
     if(data.password) {
-     const hashedPassword = await bcrypt.hash(data.password, saltOrRounds); 
-    } else {
-     const hashedPassword = "";
+     hashedPassword = await bcrypt.hash(data.password, saltOrRounds); 
     }
 
     const newUser = new User({
