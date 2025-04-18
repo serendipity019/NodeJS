@@ -84,6 +84,44 @@ describe("Requests for /api/users", () => {
         expect(res.statusCode).toBe(400);
         expect(res.body.status).not.toBeTruthy();
     }, 10000);
+
+    it("Post Creates a user with same email", async() => {
+        const res = await request(app)
+        .post('/api/users')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            'username' : 'test6',
+                'password' : '12345',
+                'name': 'name test6',
+                'surname': 'surname test6',
+                'email' : 'test5@aueb.gr',
+                'address': {
+                    'area': 'area1',
+                    'road' : 'road5'
+        }});
+
+        expect(res.statusCode).toBe(400);
+        expect(res.body.status).not.toBeTruthy();
+    }, 10000);
+
+    it('POST Creates a user with empty name, surname, password', async() => {
+        const res = await request(app)
+        .post('/api/users')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+            'username' : 'test6',
+                'password' : '',
+                'name': '',
+                'surname': '',
+                'email' : 'test6@aueb.gr',
+                'address': {
+                    'area': 'area1',
+                    'road' : 'road5'}
+        });
+
+        expect(res.status).toBe(400);
+        expect(res.body.status).not.toBeTruthy();
+    })
 });
 
 describe("Requests for /api/users/:username", () => {
