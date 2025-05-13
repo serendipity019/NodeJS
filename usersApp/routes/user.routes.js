@@ -13,4 +13,7 @@ router.patch('/:username',verifyToken, verifyRoles("ADMIN"), userController.upda
 router.delete('/:username', verifyToken, verifyRoles("ADMIN"), userController.deleteByUsername);
 router.delete('/:username/email/:email', verifyToken, verifyRoles("ADMIN"), userController.deleteByEmail);
 
+router.get('/check_duplicate_email/:email', userController.checkDuplicateEmails); 
+router.post('/create', userController.create);
+
 module.exports = router; 
