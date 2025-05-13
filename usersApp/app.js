@@ -13,8 +13,9 @@ const userProduct = require('./routes/user.products.routes');
 const auth = require('./routes/auth.routes');
 
 app.use(cors({
-    origin: '*'
+    //origin: '*'
     //origin: ['http://localhost:8000'] //This is allow to have access the python server 
+    origin: ['http://localhost:4200'] 
 }));
 
 app.use('/api/users', user);
