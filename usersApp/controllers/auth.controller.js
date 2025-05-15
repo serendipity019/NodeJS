@@ -14,7 +14,9 @@ exports.login = async(req, res) => {
         //if (result && result.username === username && result.password === password)
         if (result && result.username === username && isMatch) {
             const token = authService.generateAccessToken(result);
-            res.status(200).json({status: true, data: token});
+            // res.status(200).json({status: true, data: token});
+            const frontendRedirectUrl = `http://localhost:4200/login?token=${user}`;
+            return res.redirect(frontendRedirectUrl);
         } else {
             res.status(404).json({status: false, data: "wrong password or username"});
         }
